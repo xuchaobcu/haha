@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "1ee19ed2-eee9-49b0-a420-b752ec3ef5e5",
+		"name": "IHRM登录",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST请求——登录成功",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7204c47d-4d67-4dc6-bc73-8c8441054732",
+						"exec": [
+							"//断言返回码为200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"//断言success值为true",
+							"pm.test(\"断言success值为true\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(true);",
+							"});",
+							"",
+							"//断言code值为10000",
+							"pm.test(\"断言code值为10000\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(10000);",
+							"});",
+							"",
+							"//断言message值为\"操作成功！\"",
+							"pm.test(\"断言message值为[操作成功！]\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"操作成功！\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"mobile\":\"13800000002\", \r\n\"password\":\"123456\"}"
+				},
+				"url": {
+					"raw": "http://182.92.81.159/api/sys/login",
+					"protocol": "http",
+					"host": [
+						"182",
+						"92",
+						"81",
+						"159"
+					],
+					"path": [
+						"api",
+						"sys",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST请求——用户名错误",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7204c47d-4d67-4dc6-bc73-8c8441054732",
+						"exec": [
+							"//断言返回码为200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"//断言success值为false",
+							"pm.test(\"断言success值为false\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(false);",
+							"});",
+							"",
+							"//断言code值为20001",
+							"pm.test(\"断言code值为20001\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(20001);",
+							"});",
+							"",
+							"//断言message值为\"用户名或密码错误\"",
+							"pm.test(\"断言message值为[用户名或密码错误]\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"用户名或密码错误\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"mobile\":\"13800000666\", \r\n\"password\":\"123456\"}"
+				},
+				"url": {
+					"raw": "http://182.92.81.159/api/sys/login",
+					"protocol": "http",
+					"host": [
+						"182",
+						"92",
+						"81",
+						"159"
+					],
+					"path": [
+						"api",
+						"sys",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST请求——用户名为空",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7204c47d-4d67-4dc6-bc73-8c8441054732",
+						"exec": [
+							"//断言返回码为200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"//断言success值为false",
+							"pm.test(\"断言success值为false\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(false);",
+							"});",
+							"",
+							"//断言code值为20001",
+							"pm.test(\"断言code值为20001\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(20001);",
+							"});",
+							"",
+							"//断言message值为\"用户名或密码错误\"",
+							"pm.test(\"断言message值为[用户名或密码错误]\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"用户名或密码错误\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"mobile\":\"\", \r\n\"password\":\"123456\"}"
+				},
+				"url": {
+					"raw": "http://182.92.81.159/api/sys/login",
+					"protocol": "http",
+					"host": [
+						"182",
+						"92",
+						"81",
+						"159"
+					],
+					"path": [
+						"api",
+						"sys",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST请求——密码错误",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7204c47d-4d67-4dc6-bc73-8c8441054732",
+						"exec": [
+							"//断言返回码为200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"//断言success值为false",
+							"pm.test(\"断言success值为false\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(false);",
+							"});",
+							"",
+							"//断言code值为20001",
+							"pm.test(\"断言code值为20001\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(20001);",
+							"});",
+							"",
+							"//断言message值为\"用户名或密码错误\"",
+							"pm.test(\"断言message值为[用户名或密码错误]\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"用户名或密码错误\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"mobile\":\"13800000002\", \r\n\"password\":\"error\"}"
+				},
+				"url": {
+					"raw": "http://182.92.81.159/api/sys/login",
+					"protocol": "http",
+					"host": [
+						"182",
+						"92",
+						"81",
+						"159"
+					],
+					"path": [
+						"api",
+						"sys",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST请求——密码为空",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7204c47d-4d67-4dc6-bc73-8c8441054732",
+						"exec": [
+							"//断言返回码为200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"//断言success值为false",
+							"pm.test(\"断言success值为false\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(false);",
+							"});",
+							"",
+							"//断言code值为20001",
+							"pm.test(\"断言code值为20001\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(20001);",
+							"});",
+							"",
+							"//断言message值为\"用户名或密码错误\"",
+							"pm.test(\"断言message值为[用户名或密码错误]\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"用户名或密码错误\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"mobile\":\"13800000002\", \r\n\"password\":\"\"}"
+				},
+				"url": {
+					"raw": "http://182.92.81.159/api/sys/login",
+					"protocol": "http",
+					"host": [
+						"182",
+						"92",
+						"81",
+						"159"
+					],
+					"path": [
+						"api",
+						"sys",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST请求——请求参数为空",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7204c47d-4d67-4dc6-bc73-8c8441054732",
+						"exec": [
+							"//断言返回码为200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"//断言success值为false",
+							"pm.test(\"断言success值为false\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(false);",
+							"});",
+							"",
+							"//断言code值为99999",
+							"pm.test(\"断言code值为99999\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(99999);",
+							"});",
+							"",
+							"//断言message值为\"抱歉，系统繁忙，请稍后重试！\"",
+							"pm.test(\"断言message值为[抱歉，系统繁忙，请稍后重试！]\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(\"抱歉，系统繁忙，请稍后重试！\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://182.92.81.159/api/sys/login",
+					"protocol": "http",
+					"host": [
+						"182",
+						"92",
+						"81",
+						"159"
+					],
+					"path": [
+						"api",
+						"sys",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
